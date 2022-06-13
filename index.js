@@ -1,8 +1,6 @@
-import {Vector3,Vector4,TextureLoader,Group,AdditiveBlending,Object3D} from 'three';
-import * as BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-// import {scene, renderer, camera, runtime, world, physics, ui, app, appManager} from 'app';
-import metaversefile from 'metaversefile';
 import * as THREE from 'three';
+import metaversefile from 'metaversefile';
+
 import {
     Bezier, ColorOverLife, ColorRange,
     ConeEmitter,DonutEmitter, ConstantColor, ConstantValue, FrameOverLife,
@@ -50,11 +48,11 @@ class ParticleDemo {
     }
 
     rgbToVec(rgb) {
-        return new Vector4(rgb.x / 255, rgb.y / 255, rgb.z / 255, 0.2);
+        return new THREE.Vector4(rgb.x / 255, rgb.y / 255, rgb.z / 255, 0.2);
     }
 
     initMuzzleEffect(index) {
-        const group = new Group();
+        const group = new THREE.Group();
 		
 		const scaleFactor = 10;
 
@@ -71,11 +69,11 @@ class ParticleDemo {
             emissionOverTime: new IntervalValue(0.0,20.0),
             shape: new ConeEmitter({radius:3*scaleFactor,arc:6.283,thickness:1,angle:0.8}),
             texture: this.texture,
-            blending: AdditiveBlending,
+            blending: THREE.AdditiveBlending,
             renderMode: RenderMode.BillBoard,
             renderOrder: 2,
         });
-        //flash.addBehavior(new ColorOverLife(new ColorRange(new Vector4(0.0, 0.0, 0.0, 1), new Vector4(0.0, 0.0, 0.0, 0))));
+        //flash.addBehavior(new ColorOverLife(new ColorRange(new THREE.Vector4(0.0, 0.0, 0.0, 1), new THREE.Vector4(0.0, 0.0, 0.0, 0))));
         flash.addBehavior(new ColorOverLife(new ColorRange(this.rgbToVec(new THREE.Vector3(84, 84, 84)), this.rgbToVec(new THREE.Vector3(166, 86, 0)))));
         //flash.addBehavior(new SizeOverLife(new PiecewiseBezier([[new Bezier(1, 0.95, 0.75, 0.5), 0]])));
         flash.emitter.name = 'flash';
@@ -110,7 +108,7 @@ class ParticleDemo {
     initScene(tmpScene) {
         this.scene = tmpScene;
 
-        this.texture = new TextureLoader().load(baseUrl + "textures/dust.png", (texture) => {
+        this.texture = new THREE.TextureLoader().load(baseUrl + "textures/dust.png", (texture) => {
             this.texture.name = baseUrl+"textures/smoke.png";
             this.loadingFinished();
         })   
@@ -184,7 +182,7 @@ class ParticleDemo {
 export default () => {
 	
   const app = useApp();
-  const itemPos = new Vector3(app.position.x,app.position.y,app.position.z);
+  const itemPos = new THREE.Vector3(app.position.x,app.position.y,app.position.z);
 
   const localPlayer = metaversefile.useLocalPlayer();
 
@@ -193,7 +191,7 @@ export default () => {
 
   //console.log(itemPos);
 
-  //demo.setPosition(new Vector3(0,0,0));
+  //demo.setPosition(new THREE.Vector3(0,0,0));
 
   demo.setPosition(itemPos);
 
@@ -225,7 +223,7 @@ export default () => {
     lastTimestamp = now;
 
     if (localPlayer) {
-      //demo.setPosition(new Vector3(localPlayer.position.x - itemPos.x * 2, localPlayer.position.y - (itemPos.y * 2) - 1.4, localPlayer.position.z - itemPos.z * 2));
+      //demo.setPosition(new THREE.Vector3(localPlayer.position.x - itemPos.x * 2, localPlayer.position.y - (itemPos.y * 2) - 1.4, localPlayer.position.z - itemPos.z * 2));
       demo.render(timeDiff);
     }
   });
