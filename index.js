@@ -78,7 +78,7 @@ class ParticleDemo {
         //flash.addBehavior(new SizeOverLife(new PiecewiseBezier([[new Bezier(1, 0.95, 0.75, 0.5), 0]])));
         flash.emitter.name = 'flash';
 	    flash.emitter.rotation.set(1.5707963267948966, 0, 0);
-	    //flash.emitter.position.set(0,0,0);
+	    flash.emitter.position.set(10,0,0);
         //flash.emitter.system.endEmit();
         //flash.emitter.system.restart();
         group.add(flash.emitter);
@@ -100,7 +100,7 @@ class ParticleDemo {
         this.batchRenderer = new BatchedParticleRenderer();
         this.scene.add(this.batchRenderer);
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 100; i++) {
             this.initMuzzleEffect(i);
         }
     }
