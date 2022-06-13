@@ -71,11 +71,10 @@ class ParticleDemo {
             texture: this.texture,
             blending: THREE.AdditiveBlending,
             renderMode: RenderMode.BillBoard,
-            renderOrder: 2,
+            renderOrder: 2
         });
         //flash.addBehavior(new ColorOverLife(new ColorRange(new THREE.Vector4(0.0, 0.0, 0.0, 1), new THREE.Vector4(0.0, 0.0, 0.0, 0))));
         flash.addBehavior(new ColorOverLife(new ColorRange(this.rgbToVec(new THREE.Vector3(84, 84, 84)), this.rgbToVec(new THREE.Vector3(166, 86, 0)))));
-        flash.addBehavior(new SpeedOverLife(new Vector3(1, 0, 0), new ConstantValue(3)));
         //flash.addBehavior(new SizeOverLife(new PiecewiseBezier([[new Bezier(1, 0.95, 0.75, 0.5), 0]])));
         flash.emitter.name = 'flash';
 	    flash.emitter.rotation.set(1.5707963267948966, 0, 0);
